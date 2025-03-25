@@ -12,7 +12,7 @@
 *
 * place wifiSetup.begin(); in the setup
 *
-* begin() takes 3 parameters overrideAutoConnect = false, bool forceAutoConnect = false, int debugLevel = 0
+* begin() takes 3 parameters overrideAutoConnect = false, bool forceAutoConnect = false, bool showDebug = true)
 *   If forceAutoConnect is true, then the device will auto connect, regardless of the EEPROM setting.
 *   If overrideAutoConnect is true, then the device will start the AP, regardless of the EEPROM setting.
 *   If neither are true, then the device will follow the EEPROM settings.
@@ -20,6 +20,10 @@
 *
 * wifiSetup.handleClient();
 *   place in your loop to call the webpage network selection page
+*
+* Versions
+* Original: Used WifiSetup.begin() to set 3 parameters
+* 2025-03-24: Changed WiFiSetupLibrary to move these parameters to their own functions
 *
 */
 
@@ -33,10 +37,16 @@ String secretCode;
 
 void setup() {
 
-  Serial.begin(115200);                             // Initialize Serial 
-  delay(1500);                                      // wait to allow the monitor to start
+  Serial.begin(115200);                           // Initialize Serial 
+  delay(1500);                                    // wait to allow the monitor to start
 
-  wifiSetup.begin();                                // initalise wifi setup (overrideAutoconnect, forceAutoconnect, debugLevel)
+  // Set the desired options:
+  wifiSetup.setOverrideAutoConnect(true);         // default false
+  wifiSetup.setForceAutoConnect(false);           // default false
+  wifiSetup.setShowDebug(true);                   // defualt true
+
+  // initalise wifi setup (These are now their own functions. overrideAutoconnect, forceAutoconnect, debugLevel)
+  wifiSetup.begin();                 
 
 }
 
