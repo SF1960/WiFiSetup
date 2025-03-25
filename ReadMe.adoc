@@ -19,7 +19,9 @@ Connect to any network. No need to hard code credentials. I have found that the 
 
 ### Code allows for...
 
-Arduino Thing credential inputs. Forcing Override autoconnect, Force AutoConnect, Degug Messages via the .begin() function. Code writer can choose Acces Point Name and Password
+- Arduino Thing credential inputs.  
+- Forcing Override autoconnect, Force AutoConnect, Degug Messages functions.
+- Code writer can choose Access Point Name and Password
 
 ### The library allows calls for obtaining...
 
