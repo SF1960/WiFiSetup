@@ -5,14 +5,14 @@ Therefore, with the help of Gemini, I wrote this library.
 
 ESP32 devices with WiFi capabilities.
 
-The library requires...
+The library requires...s
 WiFi.h
 WebServer.h
 EEPROM.h
 
 Code allows for...
 Arduino Thing credential inputs.
-Forcing Override autoconnect, Force AutoConnect, Degug Messages
+Forcing Override autoconnect, Force AutoConnect, Degug Messages via the .begin() function.
 Code writer can choose Acces Point Name and Password
 
 The library allows calls for obtaining...
