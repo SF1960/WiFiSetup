@@ -68,18 +68,6 @@ The device will then attempt connect to the network and then Arduino Cloud.
 The AP will close and the device should be connected to the network.
 The credentials will be saved to EEPROM for auto connect.
 
-=== Folder structure
-
-....
- Your .ino sketch folder     => Arduino sketch folder
-  ├── Your sketch.ino        => main Arduino file
-  ├── WiFISetupLibrary.h     => My created library
-  ├── WiFi.h                 => library that contains WiFi routines
-  ├── WebServer.h            => library to manage serving web pages
-  ├── EEPROM.h               => library file to manage writing and reading to EEPROM
-  └── WiFiHelper.h           => library file to manage internet connection  
-....
-
 === License
 This project is released under a {PUBLIC} License.
 
@@ -93,7 +81,6 @@ To contribute to this project please contact: sgfpcb@gmail.com
 | A1 | M5 Atom S3          | SKU: C123       | 1            |£15.50  | https://docs.m5stack.com/en/core/AtomS3 
 | A2 | M5 Relay Module     | SKU: U023       | 1            |£3.50   | https://shop.m5stack.com/products/mini-3a-relay-unit                                         
 |===
-
 
 === Help
 This document is written in the _AsciiDoc_ format, a markup language to describe documents. 
