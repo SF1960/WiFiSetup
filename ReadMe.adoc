@@ -1,8 +1,7 @@
-###### Author: ard12sgf1960  
+###### Author: ard12sgf1960
 ###### Email: sgfpcb@gmail.com  
-###### Date: 024/03/2025  
+###### Date: 24/03/2025  
 ###### Revision: version # 2.0
-###### 2025-03-24 Added a cloud variable to control the screen brightness
 ###### License: Public Domain
 
 # Project: Using WiFiSetupLibrary.h
