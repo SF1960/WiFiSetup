@@ -1,30 +1,35 @@
 /*
-* This is an example of how to use my WiFiSetUpLibrary.h
-*
-* THIS SKETCH IS LOCKED - PLEASE MAKE A COPY TO INCLUDE/ENHANCE YOUR SKETCH TO INCLUDE CONNECTION TO ARDUINO
-*
-* The object takes the name of the Access Point network name you want displayed in the network list
-* The password required the first time you access that AP name
-*
-* You need to include the library WiFiSetupLibrary.h 
-* Set an object to the class WiFiSetup with a name for the AP and its password
-* and set a boolean called wifiConnected to false
-*
-* place wifiSetup.begin(); in the setup
-*
-* begin() takes 3 parameters overrideAutoConnect = false, bool forceAutoConnect = false, bool showDebug = true)
+This is an example of how to use my WiFiSetUpLibrary.h
+
+THIS SKETCH IS LOCKED - PLEASE MAKE A COPY TO INCLUDE/ENHANCE YOUR SKETCH TO INCLUDE CONNECTION TO ARDUINO
+
+The object takes the name of the Access Point network name you want displayed in the network list
+the password required the first time you access that AP name
+
+You need to include the library WiFiSetupLibrary.h 
+Set an object to the class WiFiSetup with a name for the AP and its password
+and set a boolean called wifiConnected to false
+
+Before running. begin() set your connect and debug requirements place these calls in the setup() routine
+
+void setOverrideAutoConnect(bool overrideAutoConnect);
+void setForceAutoConnect(bool forceAutoConnect);
+void setShowDebug(bool showDebug);
+
 *   If forceAutoConnect is true, then the device will auto connect, regardless of the EEPROM setting.
 *   If overrideAutoConnect is true, then the device will start the AP, regardless of the EEPROM setting.
 *   If neither are true, then the device will follow the EEPROM settings.
-*   debugLevel. 0=No messages. 1=High Level, 2=All 
-*
-* wifiSetup.handleClient();
+*   showDebug. 0=No messages. 1=High Level
+
+place wifiSetup.begin(); in the setup
+
+wifiSetup.handleClient();
 *   place in your loop to call the webpage network selection page
-*
-* Versions
+
+Versions
 * Original: Used WifiSetup.begin() to set 3 parameters
 * 2025-03-24: Changed WiFiSetupLibrary to move these parameters to their own functions
-*
+
 */
 
 #include <WiFiSetupLibrary.h>
