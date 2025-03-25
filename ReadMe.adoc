@@ -23,7 +23,10 @@ Arduino Thing credential inputs. Forcing Override autoconnect, Force AutoConnect
 
 ### The library allows calls for obtaining...
 
-SSID name getSSID() Password getPassword() Device ID getDeviceID() Secret Code getSecretCode()
+    SSID name getSSID()
+    Password getPassword()
+    Device ID getDeviceID()
+    Secret Code getSecretCode()
 
 ### Public functions
 
