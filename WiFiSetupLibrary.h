@@ -30,7 +30,8 @@
 class WiFiSetup {
 public:
   WiFiSetup(const char* apSSID, const char* apPassword);
-  void begin(bool overrideAutoConnect = false, bool forceAutoConnect = false, bool showDebug = true);
+  //void begin(bool overrideAutoConnect = false, bool forceAutoConnect = false, bool showDebug = true);
+  void begin();               // with parameters now moved to functions
   String getDeviceID();       // return user entered Device ID string
   String getSecretCode();     // return user entered Secret Code string
   String getSSID();           // return the selected network name
@@ -38,13 +39,23 @@ public:
   void handleClient();        // connect to web and display networks and handle feedback
   bool isSetupComplete();     // used by ino to see if still WiFiSetup is complete
 
+  // New setter functions:
+  void setOverrideAutoConnect(bool overrideAutoConnect);
+  void setForceAutoConnect(bool forceAutoConnect);
+  void setShowDebug(bool showDebug);
+
 private:
   const char* _apSSID;        // Network name used internally within the library
   const char* _apPassword;    // Password used internally
   WebServer _server;          // Server object
   bool _apMode;               // what mode the Access Point is in
   bool _setupInProgress;      // true when completed
-  bool _showDebug;            // true to show progress messages on serial monitor
+  //bool _showDebug;            // true to show progress messages on serial monitor
+  
+  bool _overrideAutoConnect = false; // Default values
+  bool _forceAutoConnect = false;
+  bool _showDebug = true;
+
   void startAP();             // internal library function to start the devices Access Point
   void autoConnect();         // automatically connect without starting AP
   void handleRoot();          // display network list and obtain credentials

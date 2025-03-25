@@ -20,26 +20,23 @@ bool WiFiSetup::isSSIDEmpty() {
   return true; // All bytes are zero, SSID is empty
 }
 
-void WiFiSetup::begin(bool overrideAutoConnect, bool forceAutoConnect, bool showDebug) {
+void WiFiSetup::begin() {
   //Serial.begin(115200); this should be in the .ino file
   EEPROM.begin(EEPROM_SIZE);
 
-  _showDebug = showDebug; // Set debug flag from parameter 
+    // save memory by not compiling Serial.printf statements
+    #if _showDebug
+    #define DEBUG_PRINTF(format, ...) Serial.printf(format, ##__VA_ARGS__)
+    #define DEBUG_PRINTF_LOWLN(format, ...) { Serial.printf(format, ##__VA_ARGS__); Serial.println(); }
+  #else
+    #define DEBUG_PRINTF(format, ...)
+    #define DEBUG_PRINTF_LOWLN(format, ...)
+  #endif
 
-// save memory by not compiling Serial.printf statements
-#if _showDebug
-  #define DEBUG_PRINTF(format, ...) Serial.printf(format, ##__VA_ARGS__)
-  #define DEBUG_PRINTF_LN(format, ...) { Serial.printf(format, ##__VA_ARGS__); Serial.println(); }
-#else
-  #define DEBUG_PRINTF(format, ...)
-  #define DEBUG_PRINTF_LN(format, ...)
-#endif
-
-
-  if (forceAutoConnect) {
+  if (_forceAutoConnect) {
     autoConnect();
     _apMode = false;
-  } else if (overrideAutoConnect) {
+  } else if (_overrideAutoConnect) {
     startAP();
     _apMode = true;
   } else if (EEPROM.read(AUTO_CONNECT_ADDR) == 1 && !isSSIDEmpty()) {
@@ -54,6 +51,19 @@ void WiFiSetup::begin(bool overrideAutoConnect, bool forceAutoConnect, bool show
   _server.on("/connect", HTTP_POST, [this]() { handleConnect(); });
   _server.begin();
   _setupInProgress = true; // Setup is now in progress
+}
+
+// Implement setter functions:
+void WiFiSetup::setOverrideAutoConnect(bool overrideAutoConnect) {
+  _overrideAutoConnect = overrideAutoConnect;
+}
+
+void WiFiSetup::setForceAutoConnect(bool forceAutoConnect) {
+  _forceAutoConnect = forceAutoConnect;
+}
+
+void WiFiSetup::setShowDebug(bool showDebug) {
+  _showDebug = showDebug;
 }
 
 void WiFiSetup::autoConnect() {
