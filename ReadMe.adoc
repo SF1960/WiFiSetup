@@ -5,95 +5,79 @@
 ###### 2025-03-24 Added a cloud variable to control the screen brightness
 ###### License: Public Domain
 
-# Project: Minimum code for using WiFiSetupLibrary.h
+# Project: Using WiFiSetupLibrary.h
 
-Connect to any network. No need to hard code credentials. I have found that the great WiFiManager library can sometimes be too big for smaller memory devices Therefore, with the help of Gemini, I wrote this library.
+- Connect to any network.
+- No need to hard code credentials.
+- I have found that the great WiFiManager library can sometimes be too big for smaller memory devices.
+- Therefore, with the help of Gemini, I wrote this library.
 
 > ESP32 devices with WiFi capabilities.
 
 ### The library requires...
 
-- WiFi.h
-- WebServer.h
-- EEPROM.h
+    WiFi.h
+    WebServer.h
+    EEPROM.h
 
 ### Code allows for...
 
 - Arduino Thing credential inputs.  
-- Forcing Override autoconnect, Force AutoConnect, Degug Messages functions.
+- Forcing Override AutoConnect, Force AutoConnect, Degug Messages functions.
 - Code writer can choose Access Point Name and Password
 
 ### The library allows calls for obtaining...
 
-    SSID name getSSID()
-    Password getPassword()
-    Device ID getDeviceID()
-    Secret Code getSecretCode()
+    SSID name: getSSID()
+    Password: getPassword()
+    Device ID: getDeviceID()
+    Secret Code: getSecretCode()
 
 ### Public functions
 
-- handleClient() - call to obtain available networks and enter credentials. Data save in device EEPROM 
-- isSetupComplete() - a boolean check to see if user has completed the setup
-- setOverrideAutoConnect(bool overrideAutoConnect);
-- setForceAutoConnect(bool forceAutoConnect);
-- setShowDebug(bool showDebug);
+    handleClient()    - call to obtain available networks and enter credentials. Data save in device EEPROM 
+    isSetupComplete() - a boolean check to see if user has completed the setup
+    setOverrideAutoConnect(bool overrideAutoConnect);
+    setForceAutoConnect(bool forceAutoConnect);
+    setShowDebug(bool showDebug);
 
     WiFiSetup.begin() takes 3 parameters overrideAutoConnect = false, bool forceAutoConnect = false, int debugLevel = 0
-    If forceAutoConnect is true, then the device will auto connect, regardless of the EEPROM setting.
-    If overrideAutoConnect is true, then the device will start the AP, regardless of the EEPROM setting.
-    If neither are true, then the device will follow the EEPROM settings.
-    showDebug. false=No messages. true=All messages (to serial monitor)
-
-Contact: Email: sgfpcb@gmail.com
-
-
-
-Control an M5 Relay Module using a M5 Atom S3 connected to Arduino IOT
-
-== Step 1: Installation
-
-Connect the Relay Module to the Atom
-
-== Step 2: Assemble the circuit
-
-1. Upload the code contained in this sketch on to your board
-2. Using a separate device connect to WiFi_Select network
-3. In the webpage that opens, select your network
-4. Enter the password for the network
-5. Once connected navigate to your Arduino Dashboard to remotely control device
-6. Alternatively, press the screen to toggle output
-
-== Function
-
-When switched on, the device attempts to connect to a WiFi network.
-If it has previously connected to a nearby network then it will.
-Otherwise, it will display a message asking the user to chose **_Select_WiFi_**
-from a list of available networks. Once seleted, a webpage will open listing
-available networks. Select your network and add the password.
-The device will connect to the network and then Arduino Cloud.
-Once connected, the display will show **~** either side of the screen status prompt.
-
-**CONNECTED**
-~ [ ON ] ~ or ~ [ OFF ] ~
-
-**To turn the relay on and off.**
-
-1. Press the screen
-2. Use the Arduino dashboard 
-
-**To turn the display on and off.**
-
-1. Use the Arduino dashboard (**_The screen is forced ON when not connected_**)
+        If forceAutoConnect is true, then the device will auto connect, regardless of the EEPROM setting.
+        If overrideAutoConnect is true, then the device will start the AP, regardless of the EEPROM setting.
+        If neither are true, then the device will follow the EEPROM settings.
+        showDebug. false=No messages. true=All messages (to serial monitor)
 
 === Folder structure
 
 ....
- M5_Atom_S3                  => Arduino sketch folder
-  ├── Relay_Lamp_Wifi.ino    => main Arduino file
-  ├── thingProperties.h      => Arduino created library
-  ├── arduino_secrets.h      => library that contains WiFi Credentials
-  ├── atomHelper.h           => library file to manager the Atom
-  ├── relayHelper.h          => library file to manage the Relay module
+ Your .ino sketch folder     => Arduino sketch folder
+  ├── Your sketch.ino        => main Arduino file
+    ├── WiFISetupLibrary.h     => My created library
+      ├── WiFi.h                 => library that contains WiFi routines
+      ├── WebServer.h            => library to manage serving web pages
+      ├── EEPROM.h               => library file to manage writing and reading to EEPROM
+....
+
+== Function
+
+The library checks the devices EEPROM storage and if AutoConnect is selected
+reads the memory and if data exits will attempt to connect to the stored network.
+Otherwise, it will start the devices Access Point and show up on a mobile or PC's network list.
+The user should connect to this network and open a web page at 168.192.4.1 where a list of available networks is shown.
+Select your network and add the password and Arduiono Device credentials.
+The device will then attempt connect to the network and then Arduino Cloud.
+The AP will close and the device should be connected to the network.
+The credentials will be saved to EEPROM for auto connect.
+
+=== Folder structure
+
+....
+ Your .ino sketch folder     => Arduino sketch folder
+  ├── Your sketch.ino        => main Arduino file
+  ├── WiFISetupLibrary.h     => My created library
+  ├── WiFi.h                 => library that contains WiFi routines
+  ├── WebServer.h            => library to manage serving web pages
+  ├── EEPROM.h               => library file to manage writing and reading to EEPROM
   └── WiFiHelper.h           => library file to manage internet connection  
 ....
 
