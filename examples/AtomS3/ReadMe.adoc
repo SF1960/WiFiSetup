@@ -1,0 +1,59 @@
+:Author: ard12sgf1960
+:Email: sgfpcb@gmail.com
+:Date: 2025-03-28
+:Revision: version # 1.0
+:License: Public Domain
+
+= Project: {Minimum code for using WiFiSetupLibrary.h}
+
+Connect to any network using the WiFiSetupLibrary and Display on an AtomS3
+
+== Step 1: Installation
+
+Connect the Atom
+
+== Step 2: Assemble the circuit
+
+1. Upload the code contained in this sketch on to your board
+2. Using a separate device connect to WiFi_Select network
+3. In the webpage that opens, select your network
+4. Enter the password for the network
+5. Once connected navigate to your Arduino Dashboard to remotely control device
+
+== Function
+
+When switched on, the device attempts to connect to a WiFi network.
+If it has previously connected to a nearby network then it will.
+Otherwise, it will display a message asking the user to chose **_Select_WiFi_**
+from a list of available networks. Once seleted, a webpage will open listing
+available networks. Select your network and add the password.
+The device will connect to the network and then Arduino Cloud.
+Once connected, the display will show **~** either side of the screen status prompt.
+
+=== Folder structure
+
+....
+ WiFiSedtup_AtomS3           => Arduino sketch folder
+  ├── WiFiSedtup_AtomS3.ino     => main Arduino file
+  ├── atomHelper.h              => library file to manager the Atom
+  └── ReadMe.aadoc              => this file
+....
+
+=== License
+This project is released under a {PUBLIC} License.
+
+=== Contributing
+To contribute to this project please contact: sgfpcb@gmail.com
+
+=== BOM
+
+|===
+| ID | Part name           | Part number     | Quantity     |Price   | Webpage                             
+| A1 | M5 Atom S3          | SKU: C123       | 1            |£15.50  | https://docs.m5stack.com/en/core/AtomS3                                    
+|===
+
+
+=== Help
+This document is written in the _AsciiDoc_ format, a markup language to describe documents. 
+If you need help you can search the http://www.methods.co.nz/asciidoc[AsciiDoc homepage]
+or consult the http://powerman.name/doc/asciidoc[AsciiDoc cheatsheet]
